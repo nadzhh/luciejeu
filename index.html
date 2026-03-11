@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Le Grand Défi Mystère pour nos deux ans</title>
+<title>Le Grand Défi Mystère</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap');
 
@@ -160,9 +160,9 @@ body{
 <div class="section active" id="s-intro">
   <div class="card">
     <p class="badge">✦ Le Grand Défi Mystère ✦</p>
-    <h1 class="title">Prouve que<br>tu me connais bien après 2 ans.</h1>
+    <h1 class="title">Prouve que<br>t'es intelligent(e)</h1>
     <div class="sep"></div>
-    <p class="sub">6 manches. Des questions qui piquent.<br>Une récompense mystérieuse à la fin.<br><em style="color:rgba(201,168,76,.6)">Si tu y arrives.</em></p>
+    <p class="sub">5 manches. Des questions qui piquent.<br>Une récompense mystérieuse à la fin.<br><em style="color:rgba(201,168,76,.6)">Si tu y arrives.</em></p>
     <button class="btn solid" onclick="startGame()">Accepter le défi →</button>
   </div>
 </div>
@@ -231,7 +231,7 @@ body{
 <div class="section" id="s-r6">
   <div class="card">
     <p class="badge">Manche 6 · Tu me connais bien ?</p>
-    <p class="qcount" id="r6-ct">Question 1/5</p>
+    <p class="qcount" id="r6-ct">Question 1/9</p>
     <p class="qtext" id="r6-q"></p>
     <div class="opts" id="r6-opts"></div>
     <p class="feedback" id="r6-fb"></p>
@@ -360,7 +360,7 @@ const R1=[
       {label:"Ta carrière",rightComment:"",wrongComment:"Je ne commenterai pas. C'est l'obscurité 🌑"},
       {label:"L'obscurité",rightComment:"Exactement ! L'obscurité. T'as de la jugeote ✨",wrongComment:""},
       {label:"Un bébé",rightComment:"",wrongComment:"Un bébé ? Non. L'obscurité 🌑"},
-      {label:"Mon amour pour toi",rightComment:"",wrongComment:"ça aurait pu ! C'est l'obscurité 🌑"}
+      {label:"Le soleil",rightComment:"",wrongComment:"Le soleil... c'est le contraire ! C'est l'obscurité 🌑"}
     ],ans:1
   },
   {
@@ -527,10 +527,10 @@ const R5=[
     ko:"T'as réussi à le lécher ?! Montre-moi ça 👀 (C'est vrai pour 99% des gens)"
   },
   {
-    q:"Les poissons rouges ont une mémoire de 3 secondes, comme moi.",
+    q:"Les poissons rouges ont une mémoire de 3 secondes.",
     ans:false,
     ok:"FAUX ! Ils mémorisent jusqu'à plusieurs mois. Mythe enterré 🐟",
-    ko:"C'est FAUX ! Ils se souviennent plusieurs mois. Ce mythe doit mourir 🐟 en revanche moi je me souviens pas forcément"
+    ko:"C'est FAUX ! Ils se souviennent plusieurs mois. Ce mythe doit mourir 🐟"
   },
   {
     q:"La Grande Muraille de Chine est visible à l'œil nu depuis l'espace.",
@@ -622,6 +622,42 @@ const R6=[
       {label:"Rép. Dominicaine",rightComment:"OUI ! Plages, soleil, rhum... on y va quand ? 🏝️",wrongComment:""},
       {label:"Australie",rightComment:"",wrongComment:"Trop de kangourous. République Dominicaine 🏝️"}
     ],ans:2
+  },
+  {
+    q:"Mon plat préféré c'est quoi ?",
+    opts:[
+      {label:"Boudin",rightComment:"",wrongComment:"Du boudin c'est bon mais Non. Bouchées à la reine 👑"},
+      {label:"Tacos",rightComment:"",wrongComment:"Tacos c'est bien mais non. Bouchées à la reine 👑"},
+      {label:"Bouchées à la reine",rightComment:"Exactement ! La bouchée à la reine c'est sacré 👑",wrongComment:""},
+      {label:"Sushi (lol)",rightComment:"",wrongComment:"Sushi... Non. Bouchées à la reine (ou raclette) 👑"}
+    ],ans:2
+  },
+  {
+    q:"Ma série préférée c'est laquelle ?",
+    opts:[
+      {label:"Stranger Things",rightComment:"",wrongComment:"Stranger Things... Non. Breaking Bad / Prison Break 🎩"},
+      {label:"Breaking Bad",rightComment:"Say my name 🎩 Tu m'as bien cerné !",wrongComment:""},
+      {label:"Outer Banks",rightComment:"",wrongComment:"Madelyn oui, c'est bien mais non. Breaking Bad 🎩"},
+      {label:"La Casa de Papel",rightComment:"",wrongComment:"Pas du tout ! Breaking Bad (ou Prison Break) 🎩"}
+    ],ans:1
+  },
+  {
+    q:"Mon film préféré parmi ces choix ?",
+    opts:[
+      {label:"Titanic",rightComment:"",wrongComment:"Titanic... Non. Les singes dominent le monde 🦍"},
+      {label:"Fast & Furious",rightComment:"",wrongComment:"Fast & Furious c'est bien mais non. Planète des Singes 🦍"},
+      {label:"La Planète des Singes",rightComment:"Caesar is king 🦍 Bien joué !",wrongComment:""},
+      {label:"En eaux troubles",rightComment:"",wrongComment:"En eaux troubles... Non. Planète des Singes 🦍"}
+    ],ans:2
+  },
+  {
+    q:"Mon week-end idéal c'est ?",
+    opts:[
+      {label:"City trip à Paris",rightComment:"",wrongComment:"Paris... Non. Je suis casanier(ère) moi ! Raclette + canapé 🧀"},
+      {label:"Raclette + canapé + série",rightComment:"Tu me connais trop bien 🧀 C'est parfait !",wrongComment:""},
+      {label:"Randonnée en montagne",rightComment:"",wrongComment:"La montagne ?! Raclette + canapé + série 🧀"},
+      {label:"Soirée en boîte",rightComment:"",wrongComment:"En boîte ?! Non merci. Raclette + canapé 🧀"}
+    ],ans:1
   }
 ];
 let r6i=0;
@@ -629,7 +665,7 @@ function initR6(){r6i=0;doR6();}
 function doR6(){
   if(r6i>=R6.length){endR6();return;}
   const q=R6[r6i];
-  document.getElementById('r6-ct').textContent=`Question ${r6i+1}/5`;
+  document.getElementById('r6-ct').textContent=`Question ${r6i+1}/9`;
   document.getElementById('r6-q').textContent=q.q;
   const c=document.getElementById('r6-opts');
   const fb=document.getElementById('r6-fb');
