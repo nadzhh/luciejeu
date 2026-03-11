@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Le Grand Défi Mystère</title>
+<title>Le Grand Défi Mystère pour les 2 ans</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap');
 
@@ -98,11 +98,11 @@ body{
 #react-area{position:relative;width:min(400px,90vw);height:280px;
   background:rgba(255,255,255,.02);border:1px solid rgba(201,168,76,.14);
   border-radius:4px;overflow:hidden;}
-.target{position:absolute;width:54px;height:54px;border-radius:50%;
+.target{position:absolute;border-radius:50%;
   background:radial-gradient(circle,var(--gold-light),var(--gold));
   cursor:pointer;transform:translate(-50%,-50%);
   animation:tpop .12s ease;box-shadow:0 0 18px rgba(201,168,76,.5);
-  display:flex;align-items:center;justify-content:center;font-size:22px;}
+  display:flex;align-items:center;justify-content:center;}
 @keyframes tpop{from{transform:translate(-50%,-50%) scale(0);}to{transform:translate(-50%,-50%) scale(1);}}
 #r4-bar{position:absolute;bottom:0;left:0;height:4px;background:var(--gold);
   width:100%;box-shadow:0 0 8px var(--gold);}
@@ -159,10 +159,10 @@ body{
 <!-- ══ INTRO ══ -->
 <div class="section active" id="s-intro">
   <div class="card">
-    <p class="badge">✦ Le Grand Défi Mystère ✦</p>
-    <h1 class="title">Prouve que<br>t'es intelligent(e)</h1>
+    <p class="badge">✦ Le Grand Défi Mystère des 2 ans✦</p>
+    <h1 class="title">Prouve que<br>t'es intelligent(e) et que tu me connais bien</h1>
     <div class="sep"></div>
-    <p class="sub">5 manches. Des questions qui piquent.<br>Une récompense mystérieuse à la fin.<br><em style="color:rgba(201,168,76,.6)">Si tu y arrives.</em></p>
+    <p class="sub">Plusieurs manches. Des questions.<br>Une récompense mystérieuse à la fin.<br><em style="color:rgba(201,168,76,.6)">Si tu y arrives.</em></p>
     <button class="btn solid" onclick="startGame()">Accepter le défi →</button>
   </div>
 </div>
@@ -185,6 +185,12 @@ body{
     <p class="qcount" id="r2-ct">Question 1/3</p>
     <p class="qtext" id="r2-q"></p>
     <div class="opts" id="r2-opts"></div>
+    <div style="display:flex;align-items:center;gap:10px;width:100%">
+      <div style="flex:1;height:3px;background:rgba(201,168,76,.12);border-radius:2px;overflow:hidden">
+        <div id="r2-tbar" style="height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-light));width:100%;transition:width 5s linear;box-shadow:0 0 6px var(--gold)"></div>
+      </div>
+      <span id="r2-tsec" style="font-size:11px;letter-spacing:.2em;color:rgba(201,168,76,.6);min-width:18px;text-align:right">6</span>
+    </div>
     <p class="feedback" id="r2-fb"></p>
   </div>
 </div>
@@ -193,7 +199,13 @@ body{
 <div class="section" id="s-r3">
   <div class="card" style="max-width:420px">
     <p class="badge">Manche 3 · Jeu de Mémoire</p>
-    <p class="sub" id="r3-st">Retrouve toutes les paires !</p>
+    <div style="display:flex;align-items:center;gap:10px;width:100%;max-width:340px">
+      <div style="flex:1;height:3px;background:rgba(201,168,76,.12);border-radius:2px;overflow:hidden">
+        <div id="r3-tbar" style="height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-light));width:100%;transition:width 16s linear;box-shadow:0 0 6px var(--gold)"></div>
+      </div>
+      <span id="r3-tsec" style="font-size:11px;letter-spacing:.2em;color:rgba(201,168,76,.6);min-width:24px;text-align:right">20</span>
+    </div>
+    <p class="sub" id="r3-st">Un petit memory, pour ton plus grand bonheur</p>
     <div id="mem-grid"></div>
     <p class="feedback" id="r3-fb" style="opacity:0">.</p>
   </div>
@@ -328,7 +340,7 @@ function renderMCQ(containerId,feedbackId,opts,ansIdx,onDone){
       if(!ok)c.querySelectorAll('.opt')[ansIdx].classList.add('ok');
       if(ok)addScore(1);
       fb.textContent=ok?o.rightComment:o.wrongComment;
-      setTimeout(onDone,1900);
+      setTimeout(onDone,1000);
     };
     c.appendChild(b);
   });
@@ -351,7 +363,7 @@ const R1=[
       {label:"Un vampire végétarien",rightComment:"",wrongComment:"Un vampire végétarien... originalité 0/10. C'est un peigne 🪮"},
       {label:"Un peigne",rightComment:"Facile pour commencer ! C'est bien un peigne 🪮",wrongComment:""},
       {label:"Une fermeture éclair",rightComment:"",wrongComment:"Non non. C'est un peigne 🪮"},
-      {label:"Ton sourire un lundi",rightComment:"",wrongComment:"Ton humour oui, mais la réponse c'est un peigne 🪮"}
+      {label:"Ton sourire un lundi matin",rightComment:"",wrongComment:"Ton humour oui, mais la réponse c'est un peigne 🪮"}
     ],ans:1
   },
   {
@@ -364,12 +376,12 @@ const R1=[
     ],ans:1
   },
   {
-    q:"J'ai une tête et une queue, mais pas de corps ni de pattes. Que suis-je ?",
+    q:"J'ai une tête et une queue (la réponse n'est pas Wilson), mais pas de corps ni de pattes. Que suis-je ?",
     opts:[
       {label:"Un chat mutant",rightComment:"",wrongComment:"Un chat mutant 😭 Non. C'est une pièce de monnaie 🪙"},
       {label:"Un serpent philosophe",rightComment:"",wrongComment:"Un serpent philosophe... Non. C'est une pièce de monnaie 🪙"},
       {label:"Une pièce de monnaie",rightComment:"Bien joué ! Pile ou face 🪙",wrongComment:""},
-      {label:"La comète Halley",rightComment:"",wrongComment:"La comète... Non. Pièce de monnaie 🪙"}
+      {label:"Wilson",rightComment:"",wrongComment:"Et non... Non. Pièce de monnaie 🪙"}
     ],ans:2
   }
 ];
@@ -418,16 +430,63 @@ const R2=[
     ],ans:1
   }
 ];
-let r2i=0;
+let r2i=0,r2TimerInterval=null,r2TimerSec=6,r2Locked=false;
 function initR2(){r2i=0;doR2();}
+function clearR2Timer(){if(r2TimerInterval){clearInterval(r2TimerInterval);r2TimerInterval=null;}}
+function startR2Timer(onExpire){
+  r2Locked=false;
+  r2TimerSec=6;
+  document.getElementById('r2-tsec').textContent='6';
+  const bar=document.getElementById('r2-tbar');
+  bar.style.transition='none';bar.style.width='100%';
+  setTimeout(()=>{bar.style.transition='width 6s linear';bar.style.width='0%';},30);
+  clearR2Timer();
+  r2TimerInterval=setInterval(()=>{
+    r2TimerSec--;
+    document.getElementById('r2-tsec').textContent=r2TimerSec;
+    if(r2TimerSec<=2)document.getElementById('r2-tsec').style.color='#ff9090';
+    if(r2TimerSec<=0){
+      clearR2Timer();
+      if(!r2Locked){r2Locked=true;onExpire();}
+    }
+  },1000);
+}
 function doR2(){
   if(r2i>=R2.length){endR2();return;}
   const q=R2[r2i];
   document.getElementById('r2-ct').textContent=`Question ${r2i+1}/3`;
   document.getElementById('r2-q').textContent=q.q;
-  renderMCQ('r2-opts','r2-fb',q.opts,q.ans,()=>{r2i++;doR2();});
+  document.getElementById('r2-tsec').style.color='rgba(201,168,76,.6)';
+  const c=document.getElementById('r2-opts');
+  const fb=document.getElementById('r2-fb');
+  fb.textContent='';c.innerHTML='';
+  q.opts.forEach((o,i)=>{
+    const b=document.createElement('button');
+    b.className='opt';b.textContent=o.label;
+    b.onclick=()=>{
+      if(r2Locked)return;
+      r2Locked=true;
+      clearR2Timer();
+      c.querySelectorAll('.opt').forEach(x=>x.disabled=true);
+      const ok=i===q.ans;
+      b.classList.add(ok?'ok':'err');
+      if(!ok)c.querySelectorAll('.opt')[q.ans].classList.add('ok');
+      if(ok)addScore(1);
+      fb.textContent=ok?o.rightComment:o.wrongComment;
+      setTimeout(()=>{r2i++;doR2();},1000);
+    };
+    c.appendChild(b);
+  });
+  startR2Timer(()=>{
+    // temps écoulé
+    c.querySelectorAll('.opt').forEach(x=>x.disabled=true);
+    c.querySelectorAll('.opt')[q.ans].classList.add('ok');
+    document.getElementById('r2-fb').textContent='⏱️ Trop lent ! La bonne réponse était : '+q.opts[q.ans].label;
+    setTimeout(()=>{r2i++;doR2();},1000);
+  });
 }
 function endR2(){
+  clearR2Timer();
   transition(3,'Jeu de Mémoire','Retrouve les 6 paires',()=>{initR3();show('s-r3');setHud(3);});
 }
 
@@ -437,10 +496,13 @@ function endR2(){
 const EMOJIS=['🍕','🎸','🦊','🌮','🎯','🍦'];
 let mCards=[],mFlipped=[],mMatched=0,mLocked=false;
 
+let r3TimerInterval=null,r3TimerSec=16;
+function clearR3Timer(){if(r3TimerInterval){clearInterval(r3TimerInterval);r3TimerInterval=null;}}
 function initR3(){
   mMatched=0;mFlipped=[];mLocked=false;
   document.getElementById('r3-st').textContent='Retrouve toutes les paires !';
   document.getElementById('r3-fb').style.opacity='0';
+  document.getElementById('r3-tsec').style.color='rgba(201,168,76,.6)';
   const pairs=[...EMOJIS,...EMOJIS].sort(()=>Math.random()-.5);
   const grid=document.getElementById('mem-grid');grid.innerHTML='';
   mCards=pairs.map((emoji,i)=>{
@@ -450,6 +512,27 @@ function initR3(){
     d.onclick=()=>flipMem(d);
     grid.appendChild(d);return d;
   });
+  // démarrer timer 30s
+  r3TimerSec=16;
+  document.getElementById('r3-tsec').textContent='20';
+  const bar=document.getElementById('r3-tbar');
+  bar.style.transition='none';bar.style.width='100%';
+  setTimeout(()=>{bar.style.transition='width 20s linear';bar.style.width='0%';},80);
+  clearR3Timer();
+  r3TimerInterval=setInterval(()=>{
+    r3TimerSec--;
+    document.getElementById('r3-tsec').textContent=r3TimerSec;
+    if(r3TimerSec<=5)document.getElementById('r3-tsec').style.color='#ff9090';
+    if(r3TimerSec<=0){
+      clearR3Timer();
+      // révéler toutes les cartes non trouvées et passer à la suite
+      mLocked=true;
+      mCards.forEach(c=>c.classList.add('flip'));
+      document.getElementById('r3-fb').textContent='⏱️ Temps écoulé ! '+mMatched+'/6 paires trouvées.';
+      document.getElementById('r3-fb').style.opacity='1';
+      setTimeout(endR3,1800);
+    }
+  },1000);
 }
 
 function flipMem(card){
@@ -470,6 +553,7 @@ function flipMem(card){
 }
 
 function endR3(){
+  clearR3Timer();
   transition(4,'Réflexes','8 cibles, sois rapide',()=>{initR4();show('s-r4');setHud(4);});
 }
 
@@ -493,17 +577,21 @@ function nextTarget(){
   const area=document.getElementById('react-area');
   area.querySelectorAll('.target').forEach(t=>t.remove());
   const W=area.offsetWidth,H=area.offsetHeight;
-  const x=44+Math.random()*(W-88),y=44+Math.random()*(H-88);
+  const x=40+Math.random()*(W-80),y=40+Math.random()*(H-80);
+  const sz=Math.round(20+Math.random()*34); // 26px à 54px aléatoire
   const t=document.createElement('div');
-  t.className='target';t.style.left=x+'px';t.style.top=y+'px';
+  t.className='target';
+  t.style.left=x+'px';t.style.top=y+'px';
+  t.style.width=sz+'px';t.style.height=sz+'px';
+  t.style.fontSize=Math.round(sz*0.4)+'px';
   const EMJS=['⭐','💥','🎯','⚡','🌟'];
   t.textContent=EMJS[Math.floor(Math.random()*EMJS.length)];
-  t.onclick=()=>{if(r4Done)return;clearTimeout(r4Timer);r4Hits++;addScore(1);document.getElementById('r4-hits').textContent=r4Hits;area.querySelectorAll('.target').forEach(x=>x.remove());setTimeout(nextTarget,350);};
+  t.onclick=()=>{if(r4Done)return;clearTimeout(r4Timer);r4Hits++;addScore(1);document.getElementById('r4-hits').textContent=r4Hits;area.querySelectorAll('.target').forEach(x=>x.remove());setTimeout(nextTarget,280);};
   area.appendChild(t);
   r4Cur++;document.getElementById('r4-rem').textContent=r4Total-r4Cur;
   const bar=document.getElementById('r4-bar');bar.style.transition='none';bar.style.width='100%';
-  setTimeout(()=>{bar.style.transition='width 1.7s linear';bar.style.width='0%';},30);
-  r4Timer=setTimeout(()=>{area.querySelectorAll('.target').forEach(t=>t.remove());setTimeout(nextTarget,350);},1700);
+  setTimeout(()=>{bar.style.transition='width 1.36s linear';bar.style.width='0%';},30);
+  r4Timer=setTimeout(()=>{area.querySelectorAll('.target').forEach(t=>t.remove());setTimeout(nextTarget,280);},1360);
 }
 
 function endR4(){
@@ -523,17 +611,17 @@ const R5=[
   {
     q:"Il est physiquement impossible pour 99% des gens de se lécher les <s>couill...</s> le coude.",
     ans:true,
-    ok:"VRAI ! Et là tu viens d'essayer, avoue-le 😏",
+    ok:"VRAI !J'ai déjà essayer pour les <s>couill...</s>.",
     ko:"T'as réussi à le lécher ?! Montre-moi ça 👀 (C'est vrai pour 99% des gens)"
   },
   {
-    q:"Les poissons rouges ont une mémoire de 3 secondes.",
+    q:"Les poissons rouges ont une mémoire de 3 secondes. Et comme moi",
     ans:false,
-    ok:"FAUX ! Ils mémorisent jusqu'à plusieurs mois. Mythe enterré 🐟",
+    ok:"FAUX ! Ils mémorisent jusqu'à plusieurs mois. Mythe enterré 🐟mais moi...",
     ko:"C'est FAUX ! Ils se souviennent plusieurs mois. Ce mythe doit mourir 🐟"
   },
   {
-    q:"La Grande Muraille de Chine est visible à l'œil nu depuis l'espace.",
+    q:"La Grande Muraille de Chine est visible à l'œil nu depuis l'espace. Mais il faut porter mes lunettes",
     ans:false,
     ok:"FAUX ! Un mythe total confirmé par les astronautes eux-mêmes 🚀",
     ko:"C'est FAUX ! Même les astronautes le disent. On t'a menti à l'école 🤦"
@@ -565,12 +653,12 @@ function answerVF(ans){
   const other=ans?document.getElementById('vf-f'):document.getElementById('vf-t');
   picked.classList.add(ok?'ok':'err');if(!ok)other.classList.add('ok');
   document.getElementById('r5-fb').textContent=ok?q.ok:q.ko;
-  setTimeout(()=>{r5i++;doR5();},2100);
+  setTimeout(()=>{r5i++;doR5();},1000);
 }
 function endR5(){
   document.getElementById('progress-fill').style.width='100%';
   setTimeout(()=>{
-    transition(6,'Tu me connais ?','5 questions sur moi',()=>{initR6();show('s-r6');setHud(6);});
+    transition(6,'Tu me connais ?','Prouve que tu me connais',()=>{initR6();show('s-r6');setHud(6);});
   },600);
 }
 
@@ -626,10 +714,10 @@ const R6=[
   {
     q:"Mon plat préféré c'est quoi ?",
     opts:[
-      {label:"Boudin",rightComment:"",wrongComment:"Du boudin c'est bon mais Non. Bouchées à la reine 👑"},
+      {label:"Lasagnes",rightComment:"",wrongComment:"Des lasagnes ?! Non. Bouchées à la reine 👑"},
       {label:"Tacos",rightComment:"",wrongComment:"Tacos c'est bien mais non. Bouchées à la reine 👑"},
       {label:"Bouchées à la reine",rightComment:"Exactement ! La bouchée à la reine c'est sacré 👑",wrongComment:""},
-      {label:"Sushi (lol)",rightComment:"",wrongComment:"Sushi... Non. Bouchées à la reine (ou raclette) 👑"}
+      {label:"Sushi",rightComment:"",wrongComment:"Sushi... Non. Bouchées à la reine (ou raclette) 👑"}
     ],ans:2
   },
   {
@@ -637,7 +725,7 @@ const R6=[
     opts:[
       {label:"Stranger Things",rightComment:"",wrongComment:"Stranger Things... Non. Breaking Bad / Prison Break 🎩"},
       {label:"Breaking Bad",rightComment:"Say my name 🎩 Tu m'as bien cerné !",wrongComment:""},
-      {label:"Outer Banks",rightComment:"",wrongComment:"Madelyn oui, c'est bien mais non. Breaking Bad 🎩"},
+      {label:"Game of Thrones",rightComment:"",wrongComment:"GOT c'est bien mais non. Breaking Bad 🎩"},
       {label:"La Casa de Papel",rightComment:"",wrongComment:"Pas du tout ! Breaking Bad (ou Prison Break) 🎩"}
     ],ans:1
   },
@@ -645,9 +733,9 @@ const R6=[
     q:"Mon film préféré parmi ces choix ?",
     opts:[
       {label:"Titanic",rightComment:"",wrongComment:"Titanic... Non. Les singes dominent le monde 🦍"},
-      {label:"Fast & Furious",rightComment:"",wrongComment:"Fast & Furious c'est bien mais non. Planète des Singes 🦍"},
+      {label:"Inception",rightComment:"",wrongComment:"Inception c'est bien mais non. Planète des Singes 🦍"},
       {label:"La Planète des Singes",rightComment:"Caesar is king 🦍 Bien joué !",wrongComment:""},
-      {label:"En eaux troubles",rightComment:"",wrongComment:"En eaux troubles... Non. Planète des Singes 🦍"}
+      {label:"Interstellar",rightComment:"",wrongComment:"Interstellar... Non. Planète des Singes 🦍"}
     ],ans:2
   },
   {
@@ -683,7 +771,7 @@ function doR6(){
       }
       if(ok)addScore(1);
       fb.textContent=ok?o.rightComment:o.wrongComment;
-      setTimeout(()=>{r6i++;doR6();},2000);
+      setTimeout(()=>{r6i++;doR6();},1000);
     };
     c.appendChild(b);
   });
